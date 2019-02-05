@@ -9,7 +9,7 @@ namespace Csharp.Day2.Example1
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main1(string[] args)
         {
             Animal a1 = new Animal();
             Animal a2 = new Animal("cat");
