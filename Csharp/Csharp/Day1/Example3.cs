@@ -8,7 +8,7 @@ namespace Csharp.Day1
 {
     class Example3
     {
-        static void Main(string[] args)
+        static void Main1(string[] args)
         {
             double x = 4;
             double y = 5;
