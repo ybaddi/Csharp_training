@@ -46,7 +46,7 @@ namespace Csharp.Day2
 {
     class Program2
     {
-        static void Main(string[] args)
+        static void Main1(string[] args)
         {
             decimal[] limites = new decimal[]
                 {12620.0M, 13190M ,5640M ,24740M ,1810M ,39970M ,48360M,55790M,92970M,27860M,151250M,172040M,195000M,0M};
