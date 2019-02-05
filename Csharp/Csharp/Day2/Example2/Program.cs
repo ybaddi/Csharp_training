@@ -9,7 +9,7 @@ namespace Csharp.Day2.Example2
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main1(string[] args)
         {
             Console.WriteLine("area of the Rectangle : {0}",
                 ShapsMath.GetArea("rectangle", 5, 6));

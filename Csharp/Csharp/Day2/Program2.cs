@@ -49,8 +49,102 @@ namespace Csharp.Day2
         static void Main(string[] args)
         {
             decimal[] limites = new decimal[]
-                {12620.0M, 13190M ,5640M ,24740M ,1810M ,39970M ,48360M,55790M,92970M,27860M,151250M,172040M,195000M,0M }
-// matrice 3D
+                {12620.0M, 13190M ,5640M ,24740M ,1810M ,39970M ,48360M,55790M,92970M,27860M,151250M,172040M,195000M,0M};
+
+            decimal[] Coef = new decimal[]
+            {0M,0.05M,0.1M,0.15M,0.2M,0.25M,0.3M,0.35M,0.4M,0.45M,0.50M,0.55M,0.60M,0.65M };
+            // matrice 3D
+
+            /*decimal[,,] limites3D = new decimal[,,]
+               { {12620.0M, 13190M ,5640M ,24740M ,1810M ,39970M ,48360M,55790M,92970M,27860M,151250M,172040M,195000M,0M },
+               { },{ } }; */
+            string reponse = null;
+            bool OK = false;
+
+            while (!OK)
+            {
+                Console.WriteLine("etes-vous marie(e) [O/N]?");
+                reponse = Console.ReadLine().Trim().ToLower();
+                if (reponse != "o" && reponse != "n")
+                {
+                    Console.WriteLine("reponse incorrect, la reponse doit etre O/N");
+                }
+                else
+                {
+                    OK = true;
+                }
+            }
+            bool Marie = reponse == "o";
+            Console.WriteLine("is marie {0} ", Marie);
+
+            OK = false;
+            int NbEnfant = 0;
+            while (!OK)
+            {
+                Console.WriteLine("votre nombre d'enfant :");
+                reponse = Console.ReadLine();
+                try
+                {
+                    NbEnfant = int.Parse(reponse);
+                    if (NbEnfant >= 0) OK = true;
+                    else Console.WriteLine("reponse incorrect, try again la reponse doit etre un unsigned integer");
+                }
+                catch(Exception)
+                {
+                    Console.WriteLine("reponse incorrect, la reponse doit etre un unsigned integer");
+                }
+
+            }
+
+
+            OK = false;
+            decimal Salaire = 0M;
+            while (!OK)
+            {
+                Console.WriteLine("votre salaire :");
+                reponse = Console.ReadLine();
+                try
+                {
+                    Salaire = decimal.Parse(reponse);
+                    if (Salaire >= 0) OK = true;
+                    else Console.WriteLine("reponse incorrect, try again la reponse doit etre un unsigned integer");
+                }
+                catch (Exception)
+                {
+                    //Console.WriteLine("reponse incorrect, la reponse doit etre un unsigned integer");
+                    Console.Error.WriteLine("Reponse incerrect");
+                }
+
+            }
+
+            // cacule du nombre de parts
+            decimal NbParts;
+            if (Marie) NbParts = (decimal)NbEnfant / 2 + 2;
+            else NbParts = (decimal)NbEnfant / 2 + 1; ;
+            if (NbEnfant >=3) NbParts += 0.5M;
+
+            // revenu imposable 
+            decimal Revenu;
+            Revenu  = 0.7M * Salaire;
+
+            // Quostion final
+            decimal QF = Salaire / NbParts;
+
+            // recherche de la tranche d'import correspond a QF
+            int i = 0;
+            int impot = 0;
+            int Tranche = limites.Length;
+            limites[Tranche - 1] = QF;
+            while (QF > limites[i]) i++;
+
+            impot = (int)(i * 0.05M * Revenu - Coef[i] * NbParts);
+            
+
+            Console.WriteLine("impot a payer : {0}", impot);
+
+            Console.ReadLine();
+
+
         }
     }
 }
