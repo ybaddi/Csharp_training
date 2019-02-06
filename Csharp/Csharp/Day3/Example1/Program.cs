@@ -9,7 +9,7 @@ namespace Csharp.Day3
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main1(string[] args)
         {
             Shape[] Shapes = { new Circle(5), new Rectangle(5, 3) };
 
