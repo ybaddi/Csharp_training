@@ -1,5 +1,4 @@
-﻿using Microsoft.Analytics.Interfaces;
-using Microsoft.Analytics.Types.Sql;
+﻿
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,6 +12,8 @@ namespace Csharp.Day2.example6
         public override double area()
         {
             throw new NotImplementedException();
+
+
         }
     }
 }
