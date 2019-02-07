@@ -9,7 +9,7 @@ namespace Csharp.Day3.Example6
     class Program
     {
         delegate double DoubleIt(double val);
-        static void Main(string[] args)
+        static void Main1(string[] args)
         {
             // lambda
             DoubleIt db = x => x * 2;
