@@ -11,7 +11,7 @@ namespace Csharp.Day3.Example5
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main1(string[] args)
         {
             List<Animal> animalLists = new List<Animal>();
 
@@ -69,12 +69,12 @@ namespace Csharp.Day3.Example5
             addSub(2, 7);
 
             string response = Console.ReadLine();
-            switch (response)
+            /*switch (response)
                 {
                 case "add"
                     add = Arith ...
             }
-
+            */
             Console.ReadLine();
         }
 
