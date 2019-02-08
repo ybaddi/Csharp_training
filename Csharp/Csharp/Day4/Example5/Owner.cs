@@ -1,12 +1,21 @@
 ﻿using System.Runtime.Serialization;
+using System;
+
 
 namespace Csharp.Day4.Example5
 {
+    [Serializable()]
     public class Owner: ISerializable
     {
         public string Name { get; set; }
         public int ID { get; set; }
 
+
+        public Owner()
+            :this("no Name",0)
+        {
+           
+        }
 
         public Owner(string name, int id)
         {

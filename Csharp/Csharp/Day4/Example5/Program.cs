@@ -8,13 +8,16 @@ using System.IO;
 using System.Text;
 
 using Newtonsoft.Json;
+using System.Runtime.Serialization.Formatters.Binary;
 
+// XML
+using System.Xml.Serialization;
 
 namespace Csharp.Day4.Example5
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main1(string[] args)
         {
             // gestion I/O File
 
@@ -112,8 +115,60 @@ namespace Csharp.Day4.Example5
             // quick test serialisable 
             Owner o1 = new Owner("name1", 1);
 
-            Stream file1 = File.Open(@"C:\Users\youssef\DATA2/streamFile2.dat", FileMode.Create);
-            BinaryFormater bf = new BinaryFormatter();
+            Stream file1 = File.Open(@"C:\Users\youssef\DATA2/streamFile2.txt", 
+                FileMode.Create);
+            BinaryFormatter bf = new BinaryFormatter();
+
+            bf.Serialize(file1, o1);
+            file1.Close();
+
+            // Quick Deserialisable to read from a stored file
+            file1 = File.Open(@"C:\Users\youssef\DATA2/streamFile2.txt", 
+                FileMode.Open);
+            bf = new BinaryFormatter();
+
+            Owner o2 = (Owner)bf.Deserialize(file1);
+            Console.WriteLine("the name is {0}",o2.Name);
+            file1.Close();
+
+
+            // change file to show change state where made
+            o1.ID = 2;
+
+
+            // list of owners
+
+            List<Owner> lOwners = new List<Owner>
+            {
+                new Owner("name 1", 1),
+                new Owner("name 2", 2),
+                new Owner("name 3", 3),
+                new Owner("name 4", 4),
+            };
+
+            // sate the object as an XML file XML
+            
+            using(Stream file2 = new FileStream(@"C:\Users\youssef\DATA2/streamFile2.xml",
+                FileMode.Create))
+            {
+                XmlSerializer xMLSerializer = new XmlSerializer(typeof(List<Owner>));
+                xMLSerializer.Serialize(file2, lOwners);
+            }
+
+            // deserialiser
+            List<Owner> owners = null;
+            XmlSerializer xMLSerializer1 = new XmlSerializer(typeof(List<Owner>));
+            using (Stream file3 = File.OpenRead(@"C:\Users\youssef\DATA2/streamFile2.xml"))
+            {
+                owners = (List<Owner>)xMLSerializer1.Deserialize(file3);
+
+                
+            }
+
+            foreach(Owner owner1 in owners)
+            {
+                Console.WriteLine("owner {0} with id {1}", owner1.Name, owner1.ID);
+            }
 
             Console.ReadLine();
         }
